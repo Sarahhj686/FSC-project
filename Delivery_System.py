@@ -4,7 +4,8 @@ class Delivery_System:
         self.drivers = {
              "driver 1":{"id":"ID001","name": "Max Verstappen", "start_city": "Akkar"},
              "driver 2":{"id":"ID002", "name": "Charles Leclerc", "start_city": "Saida"},
-             "driver 3":{"id":"ID003", "name": "Lando Norris", "start_city": "Jbeil"}
+             "driver 3":{"id":"ID003", "name": "Lando Norris", "start_city": "Jbeil"},
+             "driver 4":{"id":"ID004", "name": "jalal", "start_city": "Jbeil"}
         }
         self.cities = {
             "Beirut": ["Jbeil"],
@@ -16,9 +17,9 @@ class Delivery_System:
 
     def main_menu(self):
         print("Hello! Please enter:") 
-        print("1. To go to the drivers menu")
-        print("2. To go to the cities menu")
-        print("3. To exit the system")
+        print("(1) To go to the drivers menu")
+        print("(2) To go to the cities menu")
+        print("(3) To exit the system")
         user_input=int(input("enter your choice:"))
         
         if user_input== 1:
@@ -35,10 +36,10 @@ class Delivery_System:
             
     def drivers_menu(self):
         print("Enter:")
-        print("1. To view all the drivers")
-        print("2. To add a driver")
-        print("3. Check similar drivers")
-        print("4. To go back to the main menu")
+        print("(1) To view all the drivers")
+        print("(2) To add a driver")
+        print("(3) Check similar drivers")
+        print("(4) To go back to the main menu")
         user_choice= int(input("enter your choice:"))
         
         if user_choice== 1:
@@ -56,7 +57,22 @@ class Delivery_System:
     def view_drivers(self):
         for driver_details in self.drivers.values():
             print(f"{driver_details['id']}, {driver_details['name']}, {driver_details['start_city']}")
-
+            
+    def add_driver(self):
+        key="ID00"
+        Id= len(self.drivers)+ 1 
+        self.drivers["id"]=(key)+str(Id)
+        name1= str(input("enter the name of the driver you want to add: ")).capitalize()
+        start_city1=str(input("enter the start city of the driver:")).capitalize()
+        if start_city1 not in self.cities:
+            choice=str(input("start city not available would you like to add it?"))
+            if choice=="yes":
+                self.drivers["start_city"]=start_city1
+            else: 
+                return
+        self.drivers["name"] = name1
+        print("driver added successfully!")
+        print(self.drivers)
         
 ds= Delivery_System()
 ds.main_menu()
