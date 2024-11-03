@@ -5,7 +5,7 @@ class Delivery_System:
              "driver 1":{"id":"ID001","name": "Max Verstappen", "start_city": "Akkar"},
              "driver 2":{"id":"ID002", "name": "Charles Leclerc", "start_city": "Saida"},
              "driver 3":{"id":"ID003", "name": "Lando Norris", "start_city": "Jbeil"},
-             "driver 4":{"id":"ID004", "name": "jalal", "start_city": "Jbeil"}
+             "driver 4":{"id":"ID004", "name": "Sebastian Vettel", "start_city": "Jbeil"}
         }
         self.cities = {
             "Beirut": ["Jbeil"],
@@ -72,7 +72,19 @@ class Delivery_System:
                 return
         self.drivers["name"] = name1
         print("driver added successfully!")
-        print(self.drivers)
+        
+    def check_similar_drivers(self):
+        city_to_drivers = {}
+        for driver_details in self.drivers.values():
+            city = driver_details['start_city']
+            if city not in city_to_drivers:
+                city_to_drivers[city] = []
+            city_to_drivers[city].append(driver_details['name'])
+
+        for city, drivers in city_to_drivers.items():
+            print(f"{city}: {', '.join(drivers)}")
+            
+    
         
 ds= Delivery_System()
 ds.main_menu()
