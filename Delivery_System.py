@@ -118,13 +118,14 @@ class Delivery_System:
         cities.sort(reverse= True)
         print(cities)
         
+    def search_city(self):
+        key = input("Enter the search key: ")
+        matching_cities = [city for city in self.cities if key.lower() in city.lower()]
         
-        
-        
+        if matching_cities:
+            print("Matching cities:", ", ".join(matching_cities))
+        else:
+            print("No matching cities found.")
     
-    
-            
-    
-        
 ds= Delivery_System()
 ds.main_menu()
