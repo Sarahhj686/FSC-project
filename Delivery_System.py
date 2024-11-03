@@ -6,15 +6,7 @@ class Delivery_System:
              "driver 2":{"id":"ID002", "name": "Charles Leclerc", "start_city": "Saida"},
              "driver 3":{"id":"ID003", "name": "Lando Norris", "start_city": "Jbeil"},
              "driver 4":{"id":"ID004", "name": "Sebastian Vettel", "start_city": "Jbeil"}
-        }
-        # self.cities = {
-        #     "Beirut": ["Jbeil"],
-        #     "Jbeil": ["Beirut", "Akkar"],
-        #     "Akkar": ["Jbeil"],
-        #     "Saida": ["Zahle"],
-        #     "Zahle": ["Saida"]
-        # }
-
+        
         self.cities = {
             "Beirut": {"Jbeil": True},
             "Jbeil": {"Beirut": True, "Akkar": True},
