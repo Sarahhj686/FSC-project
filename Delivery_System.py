@@ -7,13 +7,23 @@ class Delivery_System:
              "driver 3":{"id":"ID003", "name": "Lando Norris", "start_city": "Jbeil"},
              "driver 4":{"id":"ID004", "name": "Sebastian Vettel", "start_city": "Jbeil"}
         }
+        # self.cities = {
+        #     "Beirut": ["Jbeil"],
+        #     "Jbeil": ["Beirut", "Akkar"],
+        #     "Akkar": ["Jbeil"],
+        #     "Saida": ["Zahle"],
+        #     "Zahle": ["Saida"]
+        # }
+
         self.cities = {
-            "Beirut": ["Jbeil"],
-            "Jbeil": ["Beirut", "Akkar"],
-            "Akkar": ["Jbeil"],
-            "Saida": ["Zahle"],
-            "Zahle": ["Saida"]
+            "Beirut": {"Jbeil": True},
+            "Jbeil": {"Beirut": True, "Akkar": True},
+            "Akkar": {"Jbeil": True},
+           "Saida": {"Zahle": True},
+           "Zahle": {"Saida": True}
+            
         }
+   
 
     def main_menu(self):
         print("Hello! Please enter:") 
@@ -74,15 +84,45 @@ class Delivery_System:
         print("driver added successfully!")
         
     def check_similar_drivers(self):
-        city_to_drivers = {}
+        drivers_group = {}
         for driver_details in self.drivers.values():
             city = driver_details['start_city']
-            if city not in city_to_drivers:
-                city_to_drivers[city] = []
-            city_to_drivers[city].append(driver_details['name'])
+            if city not in drivers_group:
+                drivers_group[city] = []
+            drivers_group[city].append(driver_details['name'])
 
-        for city, drivers in city_to_drivers.items():
+        for city, drivers in drivers_group.items():
             print(f"{city}: {', '.join(drivers)}")
+        
+    def cities_menu(self):
+         print("(1) To show cities")
+         print("(2) To search city")
+         print("(3) To print neighboring cities")
+         print("(4) To print drivers delivering to city")
+         user_choice= int(input("enter your choice:"))
+         
+         if user_choice== 1:
+             self.show_cities()
+         elif user_choice== 2:
+             self.search_city()
+         elif user_choice== 3:
+             self.neighboring_cities()
+         elif user_choice== 4:
+             self.drivers_to_city()
+         else: 
+             print("invalid input, try again")
+             self.drivers_menu()
+    
+    def show_cities(self):
+        cities= list(self.cities.keys())
+        cities.sort(reverse= True)
+        print(cities)
+        
+        
+        
+        
+    
+    
             
     
         
