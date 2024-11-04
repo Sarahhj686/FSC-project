@@ -6,19 +6,11 @@ class Delivery_System:
              "driver 2":{"id":"ID002", "name": "Charles Leclerc", "start_city": "Saida"},
              "driver 3":{"id":"ID003", "name": "Lando Norris", "start_city": "Jbeil"},
              "driver 4":{"id":"ID004", "name": "Sebastian Vettel", "start_city": "Jbeil"}
-        }
-        # self.cities = {
-        #     "Beirut": ["Jbeil"],
-        #     "Jbeil": ["Beirut", "Akkar"],
-        #     "Akkar": ["Jbeil"],
-        #     "Saida": ["Zahle"],
-        #     "Zahle": ["Saida"]
-        # }
-
+       }
         self.cities = {
-            "Beirut": {"Jbeil": True},
+            "Beirut": {"Jbeil": True, "Akkar": False},
             "Jbeil": {"Beirut": True, "Akkar": True},
-            "Akkar": {"Jbeil": True},
+            "Akkar": {"Jbeil": True, "Beirut": False},
            "Saida": {"Zahle": True},
            "Zahle": {"Saida": True}
             
@@ -126,6 +118,28 @@ class Delivery_System:
             print("Matching cities:", ", ".join(matching_cities))
         else:
             print("No matching cities found.")
+    def neighboring_cities(self):
+        cityName=str(input("enter a city:"))
+        for city in self.cities.keys():
+             if city.lower()==cityName.lower() :
+                 neighboringCities= self.cities[city]
+                 print(f"{cityName}: {', '.join(neighboringCities.keys())}")
     
+    
+    def drivers_to_city(self):
+        target_city = input("Enter a city: ").lower()  
+        delivering_drivers = []
+        all_cities= []
+        for city in self.cities.keys():
+            if city.lower() ==target_city:
+                all_cities.append(city)
+                for i in list(self.cities[city].keys()):
+                    all_cities.append(i)
+        for  driver, info in self.drivers.items():
+            if info ["start_city"] in all_cities:
+                   delivering_drivers.append(info["name"])
+        if delivering_drivers:
+            print(f"delivering drivers to {target_city}:", ", ".join (delivering_drivers))    
+            
 ds= Delivery_System()
 ds.main_menu()
