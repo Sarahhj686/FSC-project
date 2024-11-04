@@ -6,7 +6,11 @@ class Delivery_System:
              "driver 2":{"id":"ID002", "name": "Charles Leclerc", "start_city": "Saida"},
              "driver 3":{"id":"ID003", "name": "Lando Norris", "start_city": "Jbeil"},
              "driver 4":{"id":"ID004", "name": "Sebastian Vettel", "start_city": "Jbeil"}
+<<<<<<< HEAD
        }
+=======
+        
+>>>>>>> 4efba4219c66ee1a2eb0d1a75a62c9bf02629cb4
         self.cities = {
             "Beirut": {"Jbeil": True, "Akkar": False},
             "Jbeil": {"Beirut": True, "Akkar": True},
